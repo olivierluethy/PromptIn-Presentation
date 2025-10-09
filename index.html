@@ -440,147 +440,382 @@
                 transform: rotate(calc(var(--i) * 27.6923deg)) translateX(120px) rotate(calc(var(--i) * -27.6923deg));
             }
         }
+        :root {
+            --primary-color: #4A00E0;
+            --secondary-color: #8E2DE2;
+        }
+
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .download-icons a {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .download-icons a:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        .video-placeholder {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .video-placeholder iframe {
+    pointer-events: auto;
+    height: 300px;
+    width: 700px;
+    z-index: 10;
+    position: relative;
+}
+
+        .featured-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 0;
+        }
+
+        .featured-logos img {
+            max-height: 40px;
+            transition: transform 0.3s ease;
+        }
+
+        .featured-logos a:hover img {
+            transform: scale(1.05);
+        }
+
+/* Navbar-Optimierungen */
+.navbar-nav .nav-link {
+    padding: 0.5rem 0.5rem; /* Reduzierter Padding für engere Links */
+    font-size: 0.9rem; /* Kleinere Schriftgröße für mehr Platz */
+    white-space: nowrap; /* Verhindert Zeilenumbrüche */
+}
+
+.navbar-nav {
+    margin-left: 0.5rem; /* Reduzierter Margin-Start */
+}
+
+/* Responsive Anpassungen für mittlere Bildschirme */
+@media (max-width: 992px) {
+    .navbar-nav .nav-link {
+        font-size: 0.85rem; /* Noch kleinere Schriftgröße */
+        padding: 0.5rem 0.4rem; /* Noch engerer Padding */
+    }
+}
+
+/* Styling für den Button in der Navbar */
+.navbar-nav .btn {
+    font-size: 0.9rem; /* Kleinere Schriftgröße für Konsistenz */
+    padding: 0.5rem 1rem; /* Kompakter Padding */
+    line-height: 1.2; /* Bessere Textausrichtung */
+}
+
+/* Responsive Anpassungen für mittlere Bildschirme */
+@media (max-width: 992px) {
+    .navbar-nav .nav-link {
+        font-size: 0.85rem; /* Noch kleinere Schriftgröße */
+        padding: 0.5rem 0.4rem; /* Noch engerer Padding */
+    }
+    .navbar-nav .btn {
+        font-size: 0.85rem; /* Noch kleinere Schriftgröße */
+        padding: 0.4rem 0.8rem; /* Engerer Padding */
+    }
+    .navbar-nav .btn img {
+        width: 18px; /* Kleinere Icons */
+        height: 18px;
+    }
+}
+
+/* Anpassung des Breakpoints für den Übergang zum mobilen Menü */
+@media (max-width: 900px) {
+    .navbar-expand-md .navbar-nav {
+        flex-direction: column; /* Vertikale Ausrichtung im mobilen Menü */
+    }
+    .navbar-expand-md .navbar-collapse {
+        /* Entferne display: none !important, um Bootstrap das Umschalten zu ermöglichen */
+    }
+    .navbar-expand-md .navbar-toggler {
+        display: block; /* Zeigt den Toggler bei 900px oder kleiner */
+    }
+}
+
+        @media (max-width: 767px) {
+            .video-placeholder {
+                height: 200px;
+                margin-top: 2rem;
+            }
+
+            .hero-section {
+                min-height: auto;
+                padding: 4rem 0;
+            }
+        }
     </style>
 </head>
 <body class="bg-light min-vh-100">
     <header class="sticky-top bg-white shadow-sm">
-        <nav class="navbar navbar-expand-md container py-3" aria-label="Main navigation">
-            <a href="/" class="navbar-brand d-flex align-items-center gap-2 text-dark text-decoration-none fs-4 fw-bold">
+    <nav class="navbar navbar-expand-md container py-2" aria-label="Main navigation">
+        <div class="d-flex w-100 justify-content-between align-items-center">
+            <a href="/" class="navbar-brand d-flex align-items-center gap-2 text-dark text-decoration-none fs-4 fw-bold me-2">
                 <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon128-NtUw1df0Zs1WrBGTHygFOmCVae4om9.png" alt="PromptIn Logo" class="img-fluid" style="width: 36px; height: 36px;">
                 PromptIn
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
-                <ul class="navbar-nav ms-auto gap-2">
-                    <li class="nav-item"><a href="#features" class="nav-link text-secondary fw-semibold">Features</a></li>
-                    <li class="nav-item"><a href="#trusted" class="nav-link text-secondary fw-semibold">Relied By</a></li>
-                    <li class="nav-item"><a href="#testimonials" class="nav-link text-secondary fw-semibold">Reviews</a></li>
-                    <li class="nav-item"><a href="#languages" class="nav-link text-secondary fw-semibold">Languages</a></li>
-                    <li class="nav-item"><a href="#compatibility" class="nav-link text-secondary fw-semibold">Compatibility</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link text-secondary fw-semibold">About</a></li>
-                    <li class="nav-item"><a href="/blogs.html" class="nav-link text-secondary fw-semibold">Blog</a></li>
-                    <li class="nav-item"><a href="/jobs.html" class="nav-link text-secondary fw-semibold">Jobs</a></li>
-                    <li class="nav-item"><a href="https://forms.gle/oeAbRFTRTKKcCyjZ8" class="nav-link text-secondary fw-semibold">Get in Touch</a></li>
-                </ul>
-                <div class="mt-3 mt-md-0">
-                    <a href="https://chromewebstore.google.com/detail/PromptIn:%20AI%20Prompt%20Management%20System/pbfmkjjnmjfjlebpfcndpdhofoccgkje"
-                       class="btn btn-primary rounded-pill px-4 fw-semibold d-flex align-items-center gap-2">
+        </div>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav gap-1 align-items-center">
+                <li class="nav-item"><a href="#features" class="nav-link text-secondary fw-semibold">Features</a></li>
+                <li class="nav-item"><a href="#trusted" class="nav-link text-secondary fw-semibold">Customers</a></li>
+                <li class="nav-item"><a href="#testimonials" class="nav-link text-secondary fw-semibold">Reviews</a></li>
+                <li class="nav-item"><a href="#languages" class="nav-link text-secondary fw-semibold">Languages</a></li>
+                <li class="nav-item"><a href="#compatibility" class="nav-link text-secondary fw-semibold">Compatibility</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link text-secondary fw-semibold">About</a></li>
+                <li class="nav-item"><a href="/blogs.html" class="nav-link text-secondary fw-semibold">Blog</a></li>
+                <li class="nav-item"><a href="/jobs.html" class="nav-link text-secondary fw-semibold">Jobs</a></li>
+                <li class="nav-item"><a href="https://forms.gle/oeAbRFTRTKKcCyjZ8" class="nav-link text-secondary fw-semibold">Get in Touch</a></li>
+                <li class="nav-item">
+                    <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" 
+                       class="btn btn-primary rounded-pill px-3 py-1 fw-semibold d-flex align-items-center gap-2 text-white" 
+                       target="_blank" rel="noopener">
                         <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/chrome/chrome.svg" alt="Chrome logo" width="20" height="20">
-                        Add to Chrome /
                         <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/edge/edge.svg" alt="Edge logo" width="20" height="20">
-                        Edge
+                        Add to Chrome/Edge
                     </a>
-                </div>
-            </div>
-        </nav>
-    </header>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-    <section class="py-5 py-md-7 text-center text-white" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);">
+    <!-- Überarbeitete Hero-Section -->
+    <section class="hero-section text-white py-5 py-md-7">
         <div class="container">
-            <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeIn">Stop Losing Time to Messy Prompts.</h1>
-            <p class="lead mb-4 mx-auto w-75 animate__animated animate__fadeIn" style="opacity: 0.9;">
-                PromptIn is the first AI Prompt Management System that helps creators, teams, and researchers organize, optimize, and reuse prompts across ChatGPT, Claude, Gemini, and more—so you get better results in seconds, not hours.
-            </p>
-            <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mb-5">
-                <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" 
-                   class="btn btn-light text-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 animate__animated animate__fadeIn" 
-                   target="_blank" rel="noopener">
-                    <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/chrome/chrome.svg" alt="Chrome logo" width="20" height="20">
-                    Add to Chrome
-                </a>
-                <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" 
-                   class="btn btn-light text-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 animate__animated animate__fadeIn" 
-                   target="_blank" rel="noopener">
-                    <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/edge/edge.svg" alt="Edge logo" width="20" height="20">
-                    Add to Edge
-                </a>
-                <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" 
-                   class="btn btn-light text-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 animate__animated animate__fadeIn" 
-                   target="_blank" rel="noopener">
-                    <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/vivaldi/vivaldi.svg" alt="Vivaldi logo" width="20" height="20">
-                    Add to Vivaldi
-                </a>
-                <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" 
-                   class="btn btn-light text-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 animate__animated animate__fadeIn" 
-                   target="_blank" rel="noopener">
-                    <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/brave/brave.svg" alt="Brave logo" width="20" height="20">
-                    Add to Brave
-                </a>
-                <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" 
-                   class="btn btn-light text-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 animate__animated animate__fadeIn" 
-                   target="_blank" rel="noopener">
-                    <img src="arc.png" alt="Arc logo" width="20" height="20">
-                    Add to Arc
-                </a>
-                <a class="btn btn-light text-primary rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 animate__animated animate__fadeIn disabled" 
-                   tabindex="-1" aria-disabled="true">
-                    <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/firefox/firefox.svg" alt="Firefox logo" width="20" height="20">
-                    Add to Firefox <small class="text-muted ms-1">(Coming soon)</small>
-                </a>
-            </div>
-            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
-                <div class="d-flex">
-                    <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 5;" alt="User 1">
-                    <img src="https://randomuser.me/api/portraits/women/1.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 4;" alt="User 2">
-                    <img src="https://randomuser.me/api/portraits/men/2.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 3;" alt="User 3">
-                    <img src="https://randomuser.me/api/portraits/women/3.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 2;" alt="User 4">
-                    <img src="https://randomuser.me/api/portraits/men/4.jpg" class="rounded-circle border border-white" style="width: 48px; height: 48px; z-index: 1;" alt="User 5">
-                </div>
-                <div class="text-white">
-                    <div class="mb-1">
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
-                        <i class="bi bi-star-fill text-warning"></i>
+            <div class="row align-items-center">
+                <div class="col-md-6 hero-content text-center text-md-start">
+                    <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeIn">Stop Losing Time to Messy Prompts.</h1>
+                    <p class="lead mb-4 animate__animated animate__fadeIn" style="opacity: 0.9;">
+                        PromptIn is the first AI Prompt Management System that helps creators, teams, and researchers organize, optimize, and reuse prompts across ChatGPT, Claude, Gemini, and more—so you get better results in seconds, not hours.
+                    </p>
+                    <div class="download-icons d-flex flex-wrap gap-3 mb-4 justify-content-center justify-content-md-start animate__animated animate__fadeIn">
+                        <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" target="_blank" rel="noopener" title="Add to Chrome">
+                            <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/chrome/chrome.svg" alt="Chrome logo" width="40" height="40">
+                        </a>
+                        <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" target="_blank" rel="noopener" title="Add to Edge">
+                            <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/edge/edge.svg" alt="Edge logo" width="40" height="40">
+                        </a>
+                        <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" target="_blank" rel="noopener" title="Add to Vivaldi">
+                            <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/vivaldi/vivaldi.svg" alt="Vivaldi logo" width="40" height="40">
+                        </a>
+                        <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" target="_blank" rel="noopener" title="Add to Brave">
+                            <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/brave/brave.svg" alt="Brave logo" width="40" height="40">
+                        </a>
+                        <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" target="_blank" rel="noopener" title="Add to Opera">
+                            <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/opera/opera.svg" alt="Opera logo" width="40" height="40">
+                        </a>
+                        <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje" target="_blank" rel="noopener" title="Add to Arc">
+                            <img src="arc.png" alt="Arc logo" width="40" height="40">
+                        </a>
+                        <a href="https://addons.mozilla.org/de/firefox/addon/promptin-ai-prompt-manager/" target="_blank" rel="noopener" title="Add to Firefox">
+                            <img src="https://cdn.jsdelivr.net/gh/alrra/browser-logos/src/firefox/firefox.svg" alt="Firefox logo" width="40" height="40">
+                        </a>
                     </div>
-                    <p class="mb-1 fw-semibold">13+ glowing reviews already ⭐</p>
-                    <p class="small fst-italic">Write the next <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje/reviews">one</a> and be part of the journey.</p>
+                    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start gap-4">
+                        <div class="d-flex">
+                            <img src="https://randomuser.me/api/portraits/men/11.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 5;" alt="User 1">
+                            <img src="https://randomuser.me/api/portraits/women/1.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 4;" alt="User 2">
+                            <img src="https://randomuser.me/api/portraits/men/2.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 3;" alt="User 3">
+                            <img src="https://randomuser.me/api/portraits/women/3.jpg" class="rounded-circle me-n2 border border-white" style="width: 48px; height: 48px; z-index: 2;" alt="User 4">
+                            <img src="https://randomuser.me/api/portraits/men/4.jpg" class="rounded-circle border border-white" style="width: 48px; height: 48px; z-index: 1;" alt="User 5">
+                        </div>
+                        <div class="text-white">
+                            <div class="mb-1">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                            </div>
+                            <p class="mb-1 fw-semibold">13+ glowing reviews already ⭐</p>
+                            <p class="small fst-italic">Write the next <a href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje/reviews" class="text-white text-decoration-underline">one</a> and be part of the journey.</p>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-6 mt-4 mt-md-0">
+    <div class="video-placeholder ratio ratio-16x9">
+        <iframe 
+            src="https://www.youtube.com/embed/TLKCk5HSC28" 
+            title="YouTube video" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+                <div style="text-align: center;">Featured on:</div>
+                <div class="featured-logos mb-4 animate__animated animate__fadeIn">
+                        <a href="https://twelve.tools" target="_blank"><img src="https://twelve.tools/badge3-light.svg" alt="Featured on Twelve Tools" height="30"></a>
+                        <a href="https://theonestartup.com" target="_blank" rel="noopener noreferrer"><img src="https://theonestartup.com/badages-awards.svg" alt="Featured on The One Startup" height="30"></a>
+                        <a href="https://acidtools.com" target="_blank"><img src="https://acidtools.com/assets/images/badge.png" alt="Acid Tools" height="30"></a>
+                        <a href="https://startupfa.me/s/chrome-web-store-1?utm_source=chromewebstore.google.com" target="_blank"><img src="https://startupfa.me/badges/featured-badge.webp" alt="Chrome Web Store - Featured on Startup Fame" height="30"></a>
+                        <a href="https://aistage.net" title="AIStage"><img src="https://aistage.net/badge.png" alt="AIStage" height="30"></a>
+                        <a href="https://goodaitools.com" target="_blank"><img src="https://goodaitools.com/assets/images/badge.png" alt="Good AI Tools" height="30"></a>
+                        <a href="https://superaiboom.com" target="_blank"><img src="https://superaiboom.com/assets/images/badge.png" alt="Super AI Boom" height="30"></a>
+                        <a href="https://toptrendtools.com" target="_blank"><img src="https://toptrendtools.com/assets/images/badge.png" alt="Top Trend Tools" height="30"></a>
+                    </div>
             </div>
         </div>
     </section>
 
-    <main>
-        <section id="trusted" class="py-5 py-md-7 bg-white text-center">
-            <div class="container">
-                <h2 class="display-5 fw-bold mb-3 animate__animated animate__fadeIn">Industry leaders who are growing every day thanks to AI.</h2>
-                <p class="lead mb-5 mx-auto w-75 text-secondary animate__animated animate__fadeIn">Worldwide, leading companies rely on precisely crafted, efficient AI prompts to drive smarter workflows and deliver measurable results for their daily use cases.</p>
-                <div class="overflow-hidden">
-                    <div class="d-flex gap-4 trusted-logos">
-                        <img src="chatgpt.png" alt="OpenAI Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="anthropic.png" alt="Anthropic Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="microsoft.png" alt="Microsoft Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="ibm.png" alt="IBM Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="tesla.png" alt="Tesla Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="amazon.png" alt="Amazon Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="google.png" alt="Google Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="nvidia.png" alt="NVIDIA Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="meta.webp" alt="Meta Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="apple.svg" alt="Apple Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="oracle.png" alt="Oracle Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="netflix.png" alt="Netflix Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="palantir.png" alt="Palantir Logo" class="img-fluid trusted-logo" style="height: 50px;">
+    <section id="trusted" class="py-5 py-md-7 bg-white text-center">
+    <div class="container">
+        <h2 class="display-5 fw-bold mb-3 animate__animated animate__fadeIn">Trusted every day by thousands.</h2>
+        <p class="lead mb-5 mx-auto w-75 text-secondary animate__animated animate__fadeIn">Worldwide, leading companies rely on precisely crafted, efficient AI prompts to drive smarter workflows and deliver measurable results for their daily use cases.</p>
+        
+        <!-- Slider Container -->
+        <div class="overflow-hidden">
+            <div class="slider-wrapper">
+                <!-- Sliding Content -->
+                <div class="trusted-companies d-flex gap-4">
+                    <!-- First set of companies -->
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-1s">
+                        <h5 class="company-name text-primary">Acme</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-2s">
+                        <h5 class="company-name text-primary">Zebrix</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-3s">
+                        <h5 class="company-name text-primary">Pinnacle</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-4s">
+                        <h5 class="company-name text-primary">Genexa</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-5s">
+                        <h5 class="company-name text-primary">SimTech</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-6s">
+                        <h5 class="company-name text-primary">Solara</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-7s">
+                        <h5 class="company-name text-primary">Quantum</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-8s">
+                        <h5 class="company-name text-primary">EcoSphere</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-9s">
+                        <h5 class="company-name text-primary">Alto</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-10s">
+                        <h5 class="company-name text-primary">Horizon</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-11s">
+                        <h5 class="company-name text-primary">Stratos</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-12s">
+                        <h5 class="company-name text-primary">Forte</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-13s">
+                        <h5 class="company-name text-primary">Vantage</h5>
+                    </div>
 
-                        <img src="chatgpt.png" alt="OpenAI Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="anthropic.png" alt="Anthropic Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="microsoft.png" alt="Microsoft Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="ibm.png" alt="IBM Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="tesla.png" alt="Tesla Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="amazon.png" alt="Amazon Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="google.png" alt="Google Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="nvidia.png" alt="NVIDIA Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="meta.webp" alt="Meta Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="apple.svg" alt="Apple Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="oracle.png" alt="Oracle Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="netflix.png" alt="Netflix Logo" class="img-fluid trusted-logo" style="height: 50px;">
-                        <img src="palantir.png" alt="Palantir Logo" class="img-fluid trusted-logo" style="height: 50px;">
+                    <!-- Duplicate of first set of companies for endless scrolling -->
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-14s">
+                        <h5 class="company-name text-primary">AlphaTech</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-15s">
+                        <h5 class="company-name text-primary">BlueWave</h5>
+                    </div>
+                    <div class="company-card p-4 border rounded shadow-sm text-center animate__animated animate__fadeIn animate__delay-16s">
+                        <h5 class="company-name text-primary">Neutronix</h5>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
+<!-- Add some CSS -->
+<style>
+    .slider-wrapper {
+        position: relative;
+        width: 100%;
+        overflow: hidden; /* hides the overflow content */
+    }
+
+    .trusted-companies {
+        display: flex;
+        animation: slide-left 60s linear infinite; /* Increase time to allow smooth loop */
+    }
+
+    .company-card {
+        min-width: 150px; /* you can adjust the width to your liking */
+        padding: 15px;
+    }
+
+    /* Animation to slide the content from right to left */
+    @keyframes slide-left {
+        0% {
+            transform: translateX(0); /* start at the initial position */
+        }
+        100% {
+            transform: translateX(-50%); /* Slide the content by half its total width */
+        }
+    }
+</style>
+
 
         <section id="features" class="py-5 py-md-7 bg-light">
   <div class="container">
@@ -749,182 +984,6 @@
             </div>
         </section>
 
-        <section id="testimonials" class="py-5 py-md-7 text-white" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);">
-            <div class="container">
-                <h2 class="display-5 fw-bold text-center mb-5 animate__animated animate__fadeIn">What Users Are Saying</h2>
-                <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"Absolute genius tool. This was my biggest desire that someone create a tool like this. Thank you very much 🙌"</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/11.jpg" alt="Marco Röösli, Technical Support Agent" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Marco Röösli</h4>
-                                        <p class="small opacity-75">Technical Support Agent, Lucerne, Switzerland</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"PromptIn has revolutionized how I interact with AI tools. My prompt library is now organized and reusable, saving me hours every week!"</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/women/1.jpg" alt="Sarah Mitchell, Content Marketing Manager" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Sarah Mitchell</h4>
-                                        <p class="small opacity-75">Content Marketing Manager, New York, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"As a developer, PromptIn is a game-changer. I can quickly access and refine my coding prompts, making my work with AI assistants faster and more effective."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/2.jpg" alt="David Kim, Senior Software Engineer" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">David Kim</h4>
-                                        <p class="small opacity-75">Senior Software Engineer, Seoul, South Korea</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"PromptIn's eco-friendly approach has made me more mindful of AI energy use while delivering faster, more accurate results. It's a win for productivity and sustainability!"</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/women/3.jpg" alt="Emily Rodriguez, UX Designer" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Emily Rodriguez</h4>
-                                        <p class="small opacity-75">UX Designer, Barcelona, Spain</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"The ability to benchmark and optimize prompts has transformed our team's workflow. PromptIn's analytics are a must-have for any AI-driven business."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/4.jpg" alt="James Lee, Data Scientist" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">James Lee</h4>
-                                        <p class="small opacity-75">Data Scientist, San Francisco, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"PromptIn's seamless integration with multiple AI platforms has streamlined our creative process, making ideation faster and more effective."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/women/5.jpg" alt="Laura Chen, Creative Director" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Tan Li Wen</h4>
-                                        <p class="small opacity-75">Creative Director, Singapore</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"Sharing optimized prompts with my team has never been easier. PromptIn has boosted our collaboration and AI performance significantly."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/6.jpg" alt="Michael Turner, Product Manager" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Michael Turner</h4>
-                                        <p class="small opacity-75">Product Manager, London, UK</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"PromptIn makes version control feel natural. I can iterate quickly and stay ahead of trends while keeping track of what worked."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/7.jpg" alt="Kevin Willson, Head of Technology" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Kevin Willson</h4>
-                                        <p class="small opacity-75">Head of Technology, Boston, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"Creating prompts with clear version control gives me a head start. Everyone’s racing to release the next great thing – PromptIn gives me the edge."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/8.jpg" alt="Peter Brandy, Independent Journalist" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Peter Brandy</h4>
-                                        <p class="small opacity-75">Independent Journalist, Michigan, USA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"PromptIn is now essential in my daily development routine. It saves mental energy and keeps my creative flow focused and structured."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/9.jpg" alt="Klaus Wäber, Senior Software Developer" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Klaus Wäber</h4>
-                                        <p class="small opacity-75">Senior Software Developer, Lucerne, Switzerland</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"I never wrote code, but PromptIn helps me write code like a programmer with over 20 years of experience. It helped me build my first business!"</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/10.jpg" alt="Ted John, Solo Entrepreneur" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">Ted John</h4>
-                                        <p class="small opacity-75">Solo Entrepreneur, Liverpool, UK</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="text-center p-4">
-                                <p class="lead mb-4">"As AI enters a new era, I don’t need to be an expert in prompting—this tool handles it all for me at a fraction of the cost. Truly an underrated gem."</p>
-                                <div class="d-flex justify-content-center align-items-center gap-3">
-                                    <img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Ted John, Solo Entrepreneur" class="rounded-circle" style="width: 50px; height: 50px;">
-                                    <div>
-                                        <h4 class="mb-0">David Peric</h4>
-                                        <p class="small opacity-75">Senior Software Engineer, Sarajevo, BA</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </button>
-                    <div class="carousel-indicators mt-4">
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="7" aria-label="Slide 8"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="8" aria-label="Slide 9"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="9" aria-label="Slide 10"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="10" aria-label="Slide 11"></button>
-                        <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="11" aria-label="Slide 12"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <section id="compatibility" class="py-5 py-md-7 text-center bg-light">
             <div class="container">
                 <h2 class="display-5 fw-bold mb-5 animate__animated animate__fadeIn">Works With Your Favorite AI Platforms</h2>
@@ -1005,27 +1064,415 @@
             </div>
         </section>
 
-        <section id="about" class="py-5 py-md-7 bg-light">
-            <div class="container">
-                <h2 class="display-5 fw-bold text-center mb-5 animate__animated animate__fadeIn">Our Mission</h2>
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-center text-md-start animate__animated animate__fadeIn">
-                        <h3 class="h4 fw-bold mb-3">Empowering Smarter AI Interactions</h3>
-                        <p class="text-secondary mb-3">PromptIn was born from the Hackergarten community with a mission to simplify and enhance AI prompt management. Our platform empowers users to create, save, and share high-quality prompts for maximum efficiency.</p>
-                        <p class="text-secondary mb-3">We are committed to fostering a community-driven approach to prompt improvement, ensuring every AI interaction is as effective as possible.</p>
-                        <p class="text-secondary mb-3">Join thousands of professionals using PromptIn to streamline their AI workflows and achieve better outcomes.</p>
-                        <div class="p-4 rounded-3 text-white" style="background: #48bb78;">
-                            <h4 class="h5 mb-3">🌍 Sustainable AI Solutions</h4>
-                            <p class="mb-0">AI consumes significant energy. PromptIn's optimized prompts help reduce unnecessary queries, lowering energy use and contributing to a greener future.</p>
-                            <p><i><a href="/blog-why-this-is-a-problem.html">See why this is a problem</a></i></p>
-                        </div>
-                    </div>
-                    <div class="col-md-6 text-center animate__animated animate__fadeIn">
-                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon128-NtUw1df0Zs1WrBGTHygFOmCVae4om9.png" alt="PromptIn Logo" class="img-fluid" style="max-width: 200px;">
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="trustedWorldwide" class="py-5 py-md-7 text-center bg-light">
+  <div class="container">
+    <h2 class="display-4 fw-bold mb-4 animate__animated animate__fadeIn">Trusted Worldwide</h2>
+    <p class="lead mb-4 text-muted">
+      Our users love <strong>PromptIn</strong> because "PromptIn looks so simple — and it f*cking is. That’s why they’ve nailed it."
+    </p>
+
+    <h3 class="h4 mb-3">Join the Movement</h3>
+    <p class="mb-5">Be part of our community and unlock futuristic unfair advantages:</p>
+
+    <div class="row justify-content-center g-4">
+      <div class="col-md-5">
+        <div class="card shadow-sm border-light rounded">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Discord Community</h5>
+            <p class="card-text text-muted">Join for quick support, instant feedback, and direct interactions with our team.</p>
+            <a href="https://discord.com/invite/ap8XYrCpSV" class="btn btn-primary btn-lg w-100">Join Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-5">
+        <div class="card shadow-sm border-light rounded">
+          <div class="card-body">
+            <h5 class="card-title fw-bold">Reddit Community</h5>
+            <p class="card-text text-muted">Engage with our users, share ideas, and get your questions answered by experts.</p>
+            <a href="https://www.reddit.com/r/PromptIn/" class="btn btn-secondary btn-lg w-100">Join Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+        <style>
+
+    .review-box {
+      width: 100%; /* 3 x 420px */
+      height: 380px;
+      overflow: hidden;
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex; /* Drei Spalten nebeneinander */
+      gap: 10px;
+    }
+
+    .reviews {
+      flex: 1; /* Gleiche Breite für jede Spalte */
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 420px;
+      top: 0;
+      will-change: transform; /* Optimiert für Animationen */
+    }
+
+    .reviews.up {
+      animation: scroll 30s linear infinite; /* Von unten nach oben */
+    }
+
+    .reviews.down {
+      animation: scroll-reverse 30s linear infinite; /* Von oben nach unten */
+    }
+
+    /* Keyframes für Scroll nach oben */
+    @keyframes scroll {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-50%); /* Hälfte der Gesamthöhe für nahtlosen Loop */
+      }
+    }
+
+    /* Keyframes für Scroll nach unten */
+    @keyframes scroll-reverse {
+      0% {
+        transform: translateY(-50%); /* Startet bei der Hälfte für nahtlosen Loop */
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .review {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      border-bottom: 1px solid #eee;
+      box-sizing: border-box;
+      background: white;
+      flex-shrink: 0; /* Verhindert Verzerrung */
+    }
+
+    .review img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .review-content {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .review-text {
+      font-size: 0.95rem;
+      color: #333;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .review-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .review-role {
+      font-size: 0.8rem;
+      color: #666;
+    }
+
+    /* Hover-Pause für Interaktivität */
+    .review-box:hover .reviews {
+      animation-play-state: paused;
+    }
+  </style>
+
+<h2 class="display-5 fw-bold mb-5 mt-4 animate__animated animate__fadeIn" style="text-align: center;">Don't only listen to us, listen to them</h2>
+  <section id="testimonials" style="margin: 2rem;">
+<div class="review-box">
+    <div class="reviews up" id="reviews1"></div>
+    <div class="reviews down" id="reviews2"></div>
+    <div class="reviews up" id="reviews3"></div>
+  </div>
+  </section>
+  
+
+  <script>
+    // First Column
+const reviewsData1 = [
+  { text: "This tool is a lifesaver for managing AI prompts. It’s saved me countless hours organizing and reusing them.", name: "Marco Rossi", role: "Technical Support Lead", company: "TechTrend Innovations, Lucerne, Switzerland" },
+  { text: "PromptIn has transformed how our team handles AI workflows. The library organization is intuitive and efficient.", name: "Sarah Mitchell", role: "Content Marketing Manager", company: "BrightSpark Media, New York, USA" },
+  { text: "As a developer, I love how PromptIn streamlines my coding prompts. It’s boosted my productivity significantly.", name: "David Kim", role: "Senior Software Engineer", company: "NextGen Solutions, Seoul, South Korea" },
+  { text: "PromptIn’s focus on eco-friendly AI use is impressive. It delivers fast results while keeping energy costs low.", name: "Emilia Rodriguez", role: "UX Designer", company: "CreativeWave Studio, Barcelona, Spain" },
+  { text: "The analytics in PromptIn have optimized our team’s AI performance. It’s a game-changer for data-driven work.", name: "James Lee", role: "Data Scientist", company: "Insight Analytics, San Francisco, USA" },
+  { text: "Integrating PromptIn with our AI platforms has made our creative process smoother and more collaborative.", name: "Li Wen Tan", role: "Creative Director", company: "SparkVibe Agency, Singapore" },
+  { text: "Sharing optimized prompts across our team is effortless with PromptIn. It’s improved our AI output quality.", name: "Michael Turner", role: "Product Manager", company: "InnovateTech, London, UK" },
+  { text: "PromptIn’s version control feels so intuitive. It helps me iterate quickly and track what works best.", name: "Kevin Wilson", role: "Head of Technology", company: "TechPulse, Boston, USA" },
+  { text: "PromptIn gives me a competitive edge. Its prompt management lets me focus on creating, not organizing.", name: "Peter Brandt", role: "Independent Journalist", company: "Freelance, Michigan, USA" },
+  { text: "PromptIn is now a core part of my daily workflow. It keeps my prompts organized and my focus sharp.", name: "Klara Weber", role: "Senior Software Developer", company: "CodeCrafters, Lucerne, Switzerland" },
+];
+
+// Second Column
+const reviewsData2 = [
+  { text: "I’m no coder, but PromptIn makes me feel like a pro. It helped me build my startup’s first app!", name: "Edward Johnson", role: "Solo Entrepreneur", company: "GrowEasy Ventures, Liverpool, UK" },
+  { text: "PromptIn takes the complexity out of AI prompting. It’s a must-have for any developer working with AI.", name: "David Perić", role: "Senior Software Engineer", company: "TechCore Systems, Sarajevo, Bosnia" },
+  { text: "The highlight-to-save feature is brilliant. I can capture ideas from any site and reuse them instantly.", name: "Sarah Clark", role: "Marketing Manager", company: "VisionWorks Agency, Chicago, USA" },
+  { text: "PromptIn cut my prompt creation time in half. The results are cleaner, and it’s eco-friendly too!", name: "Alex Davies", role: "Scrum Master", company: "AgilePeak Solutions, Austin, USA" },
+  { text: "The real-time overview keeps my prompts organized. It’s a huge time-saver for my freelance projects.", name: "Emma Wolfe", role: "Freelance Developer", company: "Self-Employed, Berlin, Germany" },
+  { text: "PromptIn’s UI is so intuitive—it’s clear the developers understand how we actually work.", name: "Benjamin Schultz", role: "Software Developer", company: "CodeZap Technologies, Munich, Germany" },
+  { text: "The clean interface makes PromptIn a joy to use. It simplifies my workflow without any clutter.", name: "Laura Becker", role: "Project Manager", company: "Planify Systems, Frankfurt, Germany" },
+  { text: "PromptIn stands out from the competition. Its thoughtful design makes AI prompting effortless.", name: "Timothy Meyer", role: "UI Designer", company: "CreativeFlow Studio, Amsterdam, Netherlands" },
+  { text: "Our team was skeptical at first, but PromptIn’s efficiency won us over. It’s now a staple in our workflow.", name: "Sophie König", role: "Team Lead", company: "InnoVibe Solutions, Vienna, Austria" },
+  { text: "PromptIn’s sleek design and powerful features make it indispensable for our fast-paced startup.", name: "Finn Petersen", role: "Founder", company: "StartSphere Labs, Copenhagen, Denmark" },
+];
+
+// Third Column
+const reviewsData3 = [
+  { text: "I wish I’d found PromptIn sooner—it’s in a class of its own for managing AI prompts effectively.", name: "Elisa Schwartz", role: "Product Manager", company: "FutureTech Innovations, Zurich, Switzerland" },
+  { text: "Our team’s collaboration has never been better. PromptIn is a must-have for shared AI workflows.", name: "Maximilian Hoffmann", role: "Software Developer", company: "DevCore Systems, Hamburg, Germany" },
+  { text: "This browser extension feels like a full-fledged app. It’s powerful, seamless, and incredibly efficient.", name: "Julia Frank", role: "Marketing Specialist", company: "BrandBoost Media, Sydney, Australia" },
+  { text: "PromptIn outshines every other tool I’ve tried. I’m never going back to manual prompt management.", name: "Leon Wagner", role: "Freelance Consultant", company: "Self-Employed, Cologne, Germany" },
+  { text: "My clients rave about PromptIn’s efficiency. It’s like a secret weapon for staying ahead in AI projects.", name: "Hannah Krüger", role: "UX Designer", company: "UserFirst Designs, Toronto, Canada" },
+  { text: "Initially skeptical, I was blown away by PromptIn’s impact. My team now works faster and smarter.", name: "Moritz Lange", role: "Scrum Master", company: "FlowSync Technologies, Dublin, Ireland" },
+  { text: "PromptIn’s intuitive design makes complex AI tasks feel effortless. It’s a game-changer for our team.", name: "Clara Braun", role: "Product Manager", company: "TechWave Solutions, Stockholm, Sweden" },
+  { text: "This tool is critical for our AI-driven projects. It’s reliable, fast, and incredibly well-designed.", name: "Vincent Meyer", role: "Team Lead", company: "GrowFast Enterprises, Paris, France" },
+  { text: "PromptIn delivers an outstanding user experience. It’s become essential for our design process.", name: "Tina Schuster", role: "UI Researcher", company: "DesignLab Studio, San Diego, USA" },
+  { text: "Top-notch quality and service. PromptIn has elevated our startup’s AI capabilities significantly.", name: "Niklas Fischer", role: "Founder", company: "NextGen Ventures, Oslo, Norway" },
+];
+
+// Container for the three columns
+const container1 = document.getElementById("reviews1");
+const container2 = document.getElementById("reviews2");
+const container3 = document.getElementById("reviews3");
+
+// Function to populate reviews
+function populateReviews(container, reviewsData) {
+  const doubledReviews = [...reviewsData, ...reviewsData]; // Duplicate reviews for seamless loop
+  doubledReviews.forEach((r, i) => {
+    const div = document.createElement("div");
+    div.className = "review";
+    // Gender-based image selection for realism
+    const gender = r.name.match(/^(Sarah|Emilia|Li Wen|Klara|Emma|Laura|Sophie|Elisa|Julia|Hannah|Clara|Tina)/) ? "women" : "men";
+    // Calculate image index to stay within 0-99 range
+    const baseIndex = i % 50; // Base index for cycling through images
+    const offset = container.id === "reviews2" ? 25 : container.id === "reviews3" ? 50 : 0; // Smaller offsets for each column
+    const imageIndex = (baseIndex + offset) % 100; // Ensure index stays within 0-99
+    div.innerHTML = `
+      <img src="https://randomuser.me/api/portraits/${gender}/${imageIndex}.jpg" alt="${r.name}">
+      <div class="review-content">
+        <div class="review-text">“${r.text}”</div>
+        <div class="review-name">${r.name}</div>
+        <div class="review-role">${r.role}, ${r.company}</div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Populate reviews into containers
+populateReviews(container1, reviewsData1);
+populateReviews(container2, reviewsData2);
+populateReviews(container3, reviewsData3);
+  </script>
+
+        <section id="plans" class="py-5 py-md-7 bg-white">
+  <div class="container text-center">
+    <h2 class="display-4 fw-bold mb-5 animate__animated animate__fadeIn">Choose Your Plan</h2>
+    <p class="lead mb-4 text-muted">
+      We offer flexible plans tailored to your needs. Start with our free plan and scale up as you grow!
+    </p>
+
+    <!-- Switch to toggle between Monthly and Yearly -->
+    <div class="form-check form-switch mb-5">
+      <input class="form-check-input" type="checkbox" id="planSwitch" data-bs-toggle="toggle" data-bs-target="#planCards">
+      <label class="form-check-label" for="planSwitch">Switch to Yearly Plans</label>
+    </div>
+
+    <!-- Plan Information -->
+    <div class="row justify-content-center g-4" id="planCards">
+      <!-- Free Plan -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow border-light rounded h-100">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Free Plan</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-5 fw-bold mb-3">$0 <span class="text-muted">/ Month</span></h5>
+            <p class="card-text text-muted mb-4">Perfect for individuals who are just getting started.</p>
+
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> To be able to save prompts</li>
+              <li><i class="bi bi-check-circle text-success"></i> Basic  Prompt Saving functionality</li>
+              <li><i class="bi bi-check-circle text-success"></i> Automated workflow functionality</li>
+              <li><i class="bi bi-check-circle text-success"></i> Basic analytical prompt support</li>
+              <li><i class="bi bi-check-circle text-success"></i> Access to the Text Anonymizer</li>
+              <li><i class="bi bi-check-circle text-success"></i> Access to Basic Support</li>
+              <li><i class="bi bi-x-circle text-danger"></i> No Customization</li>
+            </ul>
+
+            <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Plan -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow border-light rounded h-100">
+          <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Basic Plan</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-5 fw-bold mb-3">$1 <span class="text-muted">/ Month</span></h5>
+            <p class="card-text text-muted mb-4">For growing teams with enhanced features.</p>
+
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> Know which prompts actually perform best</li>
+              <li><i class="bi bi-check-circle text-success"></i> Use the most effective and popular prompts for your specific AI model</li>
+              <li><i class="bi bi-check-circle text-success"></i> Priority Email Support</li>
+              <li><i class="bi bi-check-circle text-success"></i> Easily combine your prompts with the best matches — and get smart suggestions even when nothing fits</li>
+              <li><i class="bi bi-check-circle text-success"></i> Stay on top of how and when your prompts are used</li>
+              <li><i class="bi bi-check-circle text-success"></i> Standard support</li>
+            </ul>
+
+            <a href="#" class="btn btn-warning btn-lg w-100 mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow border-light rounded h-100">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Pro Plan (Recommended)</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-5 fw-bold mb-3">$5 <span class="text-muted">/ Month</span></h5>
+            <p class="card-text text-muted mb-4">For advanced users and businesses that need the best performance.</p>
+
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> Everything from the basic plan</li>
+              <li><i class="bi bi-check-circle text-success"></i> Spot when a prompt starts losing quality and learn how, when, and why</li>
+              <li><i class="bi bi-check-circle text-success"></i> Swap weak prompts for stronger ones instantly</li>
+              <li><i class="bi bi-check-circle text-success"></i> Replace prompts with stronger alternatives</li>
+              <li><i class="bi bi-check-circle text-success"></i> Be first to try the newest AI features</li>
+              <li><i class="bi bi-check-circle text-success"></i> Priority support</li>
+              <li><i class="bi bi-check-circle text-success"></i> Priority Feature Requests</li>
+            </ul>
+
+            <a href="#" class="btn btn-dark text-white btn-lg w-100 mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Yearly Plan (hidden by default, toggled on) -->
+    <div class="row justify-content-center g-4" id="yearlyPlans" style="display: none;">
+      <!-- Free Plan Yearly -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow border-light rounded h-100">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Free Plan</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-5 fw-bold mb-3">$0 <span class="text-muted">/ Month</span></h5>
+            <p class="card-text text-muted mb-4">Perfect for individuals who are just getting started.</p>
+
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> To be able to save prompts</li>
+              <li><i class="bi bi-check-circle text-success"></i> Basic  Prompt Saving functionality</li>
+              <li><i class="bi bi-check-circle text-success"></i> Automated workflow functionality</li>
+              <li><i class="bi bi-check-circle text-success"></i> Basic analytical prompt support</li>
+              <li><i class="bi bi-check-circle text-success"></i> Access to the Text Anonymizer</li>
+              <li><i class="bi bi-check-circle text-success"></i> Access to Basic Support</li>
+              <li><i class="bi bi-x-circle text-danger"></i> No Customization</li>
+            </ul>
+
+            <a href="#" class="btn btn-outline-primary btn-lg w-100 mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basic Plan Yearly -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow border-light rounded h-100">
+          <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0">Basic Plan</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-5 fw-bold mb-3">$0.83 <span class="text-muted">/ Month</span></h5>
+            <p class="card-text text-muted mb-4">For growing teams with enhanced features.</p>
+
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> Know which prompts actually perform best</li>
+              <li><i class="bi bi-check-circle text-success"></i> Use the most effective and popular prompts for your specific AI model</li>
+              <li><i class="bi bi-check-circle text-success"></i> Priority Email Support</li>
+              <li><i class="bi bi-check-circle text-success"></i> Easily combine your prompts with the best matches — and get smart suggestions even when nothing fits</li>
+              <li><i class="bi bi-check-circle text-success"></i> Stay on top of how and when your prompts are used</li>
+              <li><i class="bi bi-check-circle text-success"></i> Standard support</li>
+            </ul>
+
+            <a href="#" class="btn btn-warning btn-lg w-100 mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pro Plan Yearly -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow border-light rounded h-100">
+          <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Pro Plan (Recommended)</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title display-5 fw-bold mb-3">$4.17 <span class="text-muted">/ Month</span></h5>
+            <p class="card-text text-muted mb-4">For advanced users and businesses that need the best performance.</p>
+
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-circle text-success"></i> Everything from the basic plan</li>
+              <li><i class="bi bi-check-circle text-success"></i> Spot when a prompt starts losing quality and learn how, when, and why</li>
+              <li><i class="bi bi-check-circle text-success"></i> Swap weak prompts for stronger ones instantly</li>
+              <li><i class="bi bi-check-circle text-success"></i> Replace prompts with stronger alternatives</li>
+              <li><i class="bi bi-check-circle text-success"></i> Be first to try the newest AI features</li>
+              <li><i class="bi bi-check-circle text-success"></i> Priority support</li>
+              <li><i class="bi bi-check-circle text-success"></i> Priority Feature Requests</li>
+            </ul>
+
+            <a href="#" class="btn btn-dark text-white btn-lg w-100 mt-4">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Info -->
+    <p class="text-muted mt-5">
+      Payment currently works through the extension popup, but will soon be available directly on our website!
+    </p>
+  </div>
+</section>
+
+<script>
+  document.getElementById("planSwitch").addEventListener("change", function () {
+    const monthlyPlans = document.getElementById("planCards");
+    const yearlyPlans = document.getElementById("yearlyPlans");
+    if (this.checked) {
+      monthlyPlans.style.display = "none";
+      yearlyPlans.style.display = "flex";
+    } else {
+      monthlyPlans.style.display = "flex";
+      yearlyPlans.style.display = "none";
+    }
+  });
+</script>
+
 
         <section id="download" class="py-5 py-md-7 text-center text-white" style="background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);">
             <div class="container">
