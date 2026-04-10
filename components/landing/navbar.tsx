@@ -39,7 +39,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-bold text-xl">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-            <span className="text-white text-sm font-bold">P</span>
+            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon128-NtUw1df0Zs1WrBGTHygFOmCVae4om9.png" alt="PromptIn Logo" className="w-full h-full object-contain" />
           </div>
           PromptIn
         </Link>

@@ -20,6 +20,11 @@ export const metadata: Metadata = {
     template: '%s | PromptIn'
   },
   description: 'Organize, optimize, and reuse your AI prompts effortlessly. Trusted by 600+ users with perfect 5-star reviews on Chrome Web Store. Free to start!',
+  icons: {
+    icon: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon128-NtUw1df0Zs1WrBGTHygFOmCVae4om9.png', // path to your icon in the public folder
+    shortcut: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/shortcut-icon-NtUw1df0Zs1WrBGTHygFOmCVae4om9.png',
+    apple: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/apple-touch-icon-NtUw1df0Zs1WrBGTHygFOmCVae4om9.png',
+  },
   keywords: ['AI prompts', 'prompt manager', 'ChatGPT', 'Claude', 'Gemini', 'prompt organization', 'AI workflow', 'prompt library'],
   authors: [{ name: 'PromptIn Team' }],
   creator: 'PromptIn',
