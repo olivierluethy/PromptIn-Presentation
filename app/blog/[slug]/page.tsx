@@ -35,6 +35,86 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
+// Markdown-Renderer Logik
+function renderMarkdown(content: string) {
+  const lines = content.trimStart().split("\n")
+  
+  // FILTER: Wenn die erste Zeile mit # (H1) beginnt, entfernen wir sie,
+  // da der Titel bereits im <header> der Seite ausgegeben wird.
+  if (lines[0]?.startsWith("# ")) {
+    lines.shift()
+  }
+
+  const elements: React.ReactNode[] = []
+  let inList = false
+  let listItems: React.ReactNode[] = []
+
+  const flushList = () => {
+    if (listItems.length > 0) {
+      elements.push(
+        <ul key={`list-${elements.length}`} className="flex flex-col gap-1.5 pl-6 list-disc">
+          {listItems}
+        </ul>
+      )
+      listItems = []
+      inList = false
+    }
+  }
+
+  const formatInline = (text: string) =>
+    text
+      .replace(/\*\*(.*?)\*\*/g, '<strong class="text-foreground font-semibold">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      .replace(
+        /\[([^\]]+)\]\(([^)]+)\)/g, 
+        '<a href="$2" class="text-primary underline hover:text-primary/80 transition-colors" target="_blank" rel="noopener noreferrer">$1</a>'
+      )
+
+  lines.forEach((line, i) => {
+    const trimmed = line.trim()
+
+    if (trimmed === "---") {
+      flushList()
+      elements.push(<hr key={`hr-${i}`} className="my-6 border-border" />)
+    } else if (trimmed.startsWith("## ")) {
+      flushList()
+      elements.push(
+        <h2 key={`h2-${i}`} className="mt-8 mb-3 text-xl font-bold text-foreground">
+          {trimmed.replace("## ", "")}
+        </h2>
+      )
+    } else if (trimmed.startsWith("### ")) {
+      flushList()
+      elements.push(
+        <h3 key={`h3-${i}`} className="mt-6 mb-2 text-lg font-semibold text-foreground">
+          {trimmed.replace("### ", "")}
+        </h3>
+      )
+    } else if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+      inList = true
+      const itemContent = trimmed.replace(/^[-*] /, "")
+      listItems.push(
+        <li key={`li-${i}`}>
+          <span dangerouslySetInnerHTML={{ __html: formatInline(itemContent) }} />
+        </li>
+      )
+    } else if (trimmed === "" || trimmed === "#") {
+      // Leere Zeilen oder nackte Raute ignorieren/flashen
+      flushList()
+    } else {
+      flushList()
+      elements.push(
+        <p key={`p-${i}`} className="leading-relaxed">
+          <span dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }} />
+        </p>
+      )
+    }
+  })
+
+  flushList()
+  return elements
+}
+
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   const post = getBlogPost(slug)
@@ -43,18 +123,12 @@ export default async function BlogPostPage({ params }: Props) {
     notFound()
   }
   
-  // Get related posts (excluding current)
-  const relatedPosts = blogPosts
-    .filter(p => p.slug !== slug)
-    .slice(0, 2)
-  
   return (
     <main className="min-h-screen bg-background">
       <BlogScrollTracker slug={slug} />
       
-      {/* Header */}
       <header className="border-b border-border bg-card/50">
-        <div className="max-w-3xl mx-auto px-4 py-6">
+        <div className="max-w-3xl mx-auto px-4 py-6 md:py-10">
           <Link 
             href="/blog"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-6"
@@ -67,21 +141,24 @@ export default async function BlogPostPage({ params }: Props) {
             {post.tags.map((tag) => (
               <span 
                 key={tag}
-                className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary"
+                className="text-xs px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-medium"
               >
                 {tag}
               </span>
             ))}
           </div>
           
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
+          {/* Dies ist die primäre Ausgabe des Titels */}
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 text-foreground tracking-tight">
+            {post.title}
+          </h1>
           
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5">
               <User className="w-4 h-4" />
               {post.author}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5">
               <Calendar className="w-4 h-4" />
               {new Date(post.date).toLocaleDateString('en-US', {
                 month: 'long',
@@ -89,7 +166,7 @@ export default async function BlogPostPage({ params }: Props) {
                 year: 'numeric'
               })}
             </span>
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1.5">
               <Clock className="w-4 h-4" />
               {post.readTime}
             </span>
@@ -97,101 +174,27 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </header>
 
-      {/* Content */}
-      <article className="max-w-3xl mx-auto px-4 py-12">
-        <div 
-          className="prose prose-invert prose-lg max-w-none
-            prose-headings:font-bold prose-headings:text-foreground
-            prose-h1:text-3xl prose-h1:mt-8 prose-h1:mb-4
-            prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
-            prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
-            prose-p:text-muted-foreground prose-p:leading-relaxed
-            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-            prose-strong:text-foreground
-            prose-ul:text-muted-foreground prose-ol:text-muted-foreground
-            prose-li:my-1
-            prose-code:bg-secondary prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-            prose-pre:bg-secondary prose-pre:border prose-pre:border-border"
-          dangerouslySetInnerHTML={{ __html: formatMarkdown(post.content) }}
-        />
-      </article>
+      <article className="max-w-3xl mx-auto px-4 py-10 md:py-16">
+        <div className="flex flex-col gap-4 text-base md:text-lg leading-relaxed text-muted-foreground">
+          {/* Der Titel aus dem Content wird hier nun gefiltert */}
+          {renderMarkdown(post.content)}
+        </div>
 
-      {/* CTA */}
-      <section className="max-w-3xl mx-auto px-4 pb-12">
-        <div className="bg-gradient-to-br from-primary/10 to-accent/10 border border-border rounded-2xl p-8 text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to organize your prompts?</h2>
-          <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-            Stop losing your best prompts. Join 600+ AI power users who trust PromptIn.
+        <div className="mt-16 rounded-xl border border-border bg-card p-8 text-center">
+          <h3 className="text-xl font-semibold text-foreground">
+            Improve your grammar with AI
+          </h3>
+          <p className="mt-2 text-muted-foreground">
+            Try AI Grammar Mentor free and learn from every correction.
           </p>
           <Link
-            href="https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 rounded-lg font-medium transition-colors"
+            href="/"
+            className="mt-6 inline-flex rounded-lg bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            <Chrome className="w-4 h-4" />
-            Install PromptIn Free
+            Get Started Free
           </Link>
         </div>
-      </section>
-
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="max-w-3xl mx-auto px-4 pb-16">
-          <h2 className="text-xl font-bold mb-6">Related Articles</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {relatedPosts.map((relatedPost) => (
-              <Link
-                key={relatedPost.slug}
-                href={`/blog/${relatedPost.slug}`}
-                className="group bg-card border border-border rounded-xl p-4 hover:border-primary/50 transition-colors"
-              >
-                <h3 className="font-semibold mb-2 group-hover:text-primary transition-colors">
-                  {relatedPost.title}
-                </h3>
-                <p className="text-sm text-muted-foreground line-clamp-2">
-                  {relatedPost.description}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      </article>
     </main>
   )
-}
-
-function formatMarkdown(content: string): string {
-  // Simple markdown to HTML conversion
-  return content
-    .trim()
-    // Code blocks
-    .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
-    // Inline code
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // Headers
-    .replace(/^### (.*$)/gm, '<h3>$1</h3>')
-    .replace(/^## (.*$)/gm, '<h2>$1</h2>')
-    .replace(/^# (.*$)/gm, '<h1>$1</h1>')
-    // Bold
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    // Links
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-    // Unordered lists
-    .replace(/^- (.*$)/gm, '<li>$1</li>')
-    // Ordered lists
-    .replace(/^\d+\. (.*$)/gm, '<li>$1</li>')
-    // Wrap consecutive li elements
-    .replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>')
-    // Paragraphs
-    .split('\n\n')
-    .map(para => {
-      const trimmed = para.trim()
-      if (!trimmed) return ''
-      if (trimmed.startsWith('<h') || trimmed.startsWith('<ul') || trimmed.startsWith('<pre')) {
-        return trimmed
-      }
-      return `<p>${trimmed}</p>`
-    })
-    .join('\n')
 }
