@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/landing/navbar"
 import { HeroSection } from "@/components/landing/hero-section"
+import { FeaturedInSection } from "@/components/landing/featured-in-section"
 import { ProblemSections } from "@/components/landing/problem-sections"
 import { SolutionSection } from "@/components/landing/solution-section"
 import { FeaturesSection } from "@/components/landing/features-section"
@@ -14,6 +15,7 @@ export default function Home() {
       <ScrollTracker />
       <Navbar />
       <HeroSection />
+      <FeaturedInSection />
       <ProblemSections />
       <SolutionSection />
       <FeaturesSection />

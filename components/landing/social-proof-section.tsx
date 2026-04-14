@@ -39,27 +39,6 @@ const testimonials = [
   }
 ]
 
-const featuredOn = [
-  { name: "Twelve Tools", url: "https://twelve.tools" },
-  { name: "The One Startup", url: "https://theonestartup.com" },
-  { name: "Acid Tools", url: "https://acidtools.com" },
-  { name: "Startup Fame", url: "https://startupfa.me" },
-  { name: "Good AI Tools", url: "https://goodaitools.com/compare/imsupporting-hybrid-live-chat-vs-promptin" },
-  { name: "Atomize Link", url: "https://atomizelink.icu/report/79833" },
-  { name: "rankpilot", url: "https://rankpilot.shop/v0uyrx-ready-to-rank-fast-choose-your-plan-manual-work-google-friendly/" },
-  { name: "rank-optimizer", url: "https://rank-optimizer.website/thanks-to-rank-your-site-pbn-links-my-dr-doubled-in-three-months/" },
-  { name: "Backlinker", url: "https://backlinker.shop/g8fzdps-contact-to-us-and-get-offer-details-for-seo-ranking-fast/" },
-  { name: "DPe Racing", url: "https://dperacing.ch/" },
-  { name: "Seotira", url: "https://seotira.com/site-speed-seo-link-building-seotira-4640/" },
-  { name: "Bye.fyi", url: "https://bye.fyi/report/79832" },
-  { name: "Seodaro", url: "https://seodaro.com/content-optimizing-seo-seodaro-5613/" },
-  { name: "Quero Party", url: "https://quero.party/report/79832" },
-  { name: "Metamagic", url: "https://metamagic.top/stats/79833" },
-  { name: "Nexus Next", url: "https://nexusnext.agency/ybnz9c-backlinks-seo-web-development-digital-marketing-services/" },
-  { name: "Sites.jake.eu", url: "https://sites.jake.eu/share/79833" },
-  { name: "Itxoft", url: "https://itxoft-cost-effective-seo-services.site/if-you-told-me-a-year-back-id-be-running-successfully-online-idve-laughed-and-blamed-poor-digital-skills-however-after-registering-at-itxoft-i-started-receiving-high-quality-guests-posts-this-enhanced/" },
-  { name: "OptimizeFlow", url: "https://optimizeflow.top/stats/79832" },
-]
 
 export function SocialProofSection() {
   const ref = useRef(null)
@@ -123,28 +102,6 @@ export function SocialProofSection() {
           ))}
         </div>
         
-        {/* Featured on */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="text-center"
-        >
-          <p className="text-sm text-muted-foreground mb-6">Featured on</p>
-          <div className="flex flex-wrap items-center justify-center gap-8">
-            {featuredOn.map((site, index) => (
-              <a
-                key={index}
-                href={site.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-              >
-                {site.name}
-              </a>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   )
