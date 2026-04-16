@@ -11,6 +11,85 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "2026-04-16-lessons-from-first-user-feedback-ui-ux-redesign",
+    title: "Lessons from Our First User Complaint: Why We Completely Redesigned PromptIn",
+    description: "Turning harsh feedback into a better product. How one honest review led to a lighter, faster, and more elegant AI prompt manager.",
+    date: "2026-04-16",
+    readTime: "6 min read",
+    author: "PromptIn Team",
+    tags: ["Product Update", "UI/UX", "Feedback"],
+    content: `
+# Lessons from Our First User Complaint: Why We Completely Redesigned PromptIn
+
+We've all heard the saying: feedback is a gift. But when it's your very first public complaint about a tool you've poured months of time and money into, it can sting.
+
+Yesterday, that gift arrived.
+
+## The Honest Feedback That Changed Everything
+
+A user took the time to share exactly what they thought:
+
+> "the UI/UX needs work. too much space wasted when clicking on the extension icon. The shortcut to open the tool is annoying as hell and consumes so much resources it locks up your chrome tab. The black font on dark blue buttons need to go. i could go on but i have work to do and i realize its FREE."
+
+Ouch. But also — fair.
+
+Instead of getting defensive, we chose to listen. Because deep down, we knew something wasn't quite right. The "Save" button injection, the click event handlers, and the way the modal opened inside ChatGPT were quietly burning resources and creating friction.
+
+We had built something functional, but not yet delightful.
+
+## What We Learned (and What We Changed)
+
+The core issue wasn't just visual polish — it was architectural. Injecting elements directly into the AI chat interface created unnecessary complexity, performance hits, and a clunky feel.
+
+So today, we made a bold decision: we ripped out the old system entirely and rebuilt the core interaction from the ground up.
+
+### The New, Much Better Way
+
+Now using PromptIn feels lighter, cleaner, and more professional:
+
+- **Saving prompts** is incredibly simple: Open the PromptIn window, click "Highlight-To-Text", select any text, and save it instantly.
+- **Inserting prompts** is seamless: Right-click inside any AI input field (ChatGPT, Claude, Gemini, etc.), choose "Open PromptIn Side Panel", browse your library, and click the prompt you want. It drops directly into the field.
+
+No more injected buttons. No more heavy DOM manipulation. No more resource-hogging shortcuts that freeze tabs.
+
+The side panel lives independently, making everything feel faster, more stable, and far more elegant.
+
+## Why This Matters for You
+
+We didn't just fix a bug — we rebuilt the experience around one core principle: **your AI workflow should never get in the way of your thinking**.
+
+The new version is:
+- Significantly lighter on system resources
+- More intuitive to use
+- Easier to maintain and improve over time
+- Truly non-intrusive
+
+And yes — it's still completely free.
+
+## From "Good Enough" to "Feels Premium"
+
+This redesign is part of a bigger lesson we've embraced: building in public means growing in public. Organic growth is happening, and with it comes real users who expect a high-quality experience — even from a free tool.
+
+We’re committed to delivering exactly that.
+
+The old approach leaned too heavily on assumptions about what "the market leader" does. The new reality? There’s room for tools that serve users differently — with simplicity, respect for performance, and genuine care for the daily workflow.
+
+## Try the New PromptIn Today
+
+If you’ve used PromptIn before, you’ll immediately notice how much smoother everything feels.
+
+If you’re new, this is the perfect time to start.
+
+Right-click in your favorite AI chat, open the side panel, and experience the difference for yourself.
+
+We’d love your honest feedback — the good, the bad, and the constructive. Every piece helps us make PromptIn even better.
+
+[Install PromptIn for free](https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje) and see the improved experience right now.
+
+Your prompts deserve a tool that feels as smart as you are.
+    `
+  },
+  {
     slug: "why-you-keep-losing-your-best-prompts",
     title: "Why You Keep Losing Your Best Prompts",
     description: "Discover why even experienced AI users struggle to keep track of their most effective prompts, and what you can do about it.",
