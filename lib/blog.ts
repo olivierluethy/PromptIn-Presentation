@@ -11,6 +11,467 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+      slug: "2026-05-02-from-overengineering-to-clarity-prompt-tool-lessons",
+  title: "From Overengineering to Clarity: What We Got Wrong Building Our Prompt Tool",
+  description: "We built too much, too fast — and learned the hard way. Here are the key mistakes we made while developing our AI prompt tool and how they shaped a simpler, better product.",
+  date: "2026-05-02",
+  readTime: "8 min read",
+  author: "PromptIn Team",
+  tags: ["Product Development", "Lessons Learned", "Startup", "UX"],
+  content: `
+# From Overengineering to Clarity: What We Got Wrong Building Our Prompt Tool
+
+Some projects fail quietly. Others force you to confront your mistakes head-on.
+
+Our prompt tool was the second kind.
+
+What started as an ambitious idea evolved into a complex system full of features, integrations, and analytics — but with less and less real value for the user.
+
+This isn’t a showcase of what we built. It’s an honest breakdown of what we got wrong — and why it matters.
+
+---
+
+## 1. We Tried to Build for Everyone — and Built for No One
+
+Our original vision was broad: a tool that works across multiple AI platforms, not just ChatGPT.
+
+In theory, that sounded powerful. In practice, it was a nightmare.
+
+Each platform came with:
+- Different UI structures  
+- Different interaction patterns  
+- No stable APIs  
+
+The result?
+
+Our extension kept breaking. A small UI change on any platform could break core features like saving prompts or opening modals.
+
+👉 **Lesson:**  
+If you don’t control the platform, you don’t control your product.
+
+---
+
+## 2. We Built Features Before Validating Demand
+
+We didn’t start small. We went all in.
+
+We built:
+- Categories and filtering systems  
+- Tags and types  
+- Workflows  
+- Version control with comparisons  
+- Analytics and benchmarking  
+- Usage charts and performance tracking  
+
+The problem wasn’t execution.
+
+The problem was: **no one needed this at the beginning.**
+
+👉 **Lesson:**  
+Complexity is not progress — it’s often just unvalidated effort.
+
+---
+
+## 3. We Followed “Cool Ideas” Instead of Real Behavior
+
+Many features came from thoughts like:
+- “This would be cool…”  
+- “This could be useful…”  
+- “We could analyze this…”  
+
+But we didn’t ask the most important question:
+
+**Would users actually use this every day?**
+
+Take prompt benchmarking with “Top Gainers” and “Top Losers” — inspired by stock markets.
+
+Technically interesting. Visually impressive.
+
+But practically? Rarely used.
+
+👉 **Lesson:**  
+A feature is only valuable if it gets used consistently — not if it looks impressive.
+
+---
+
+## 4. We Tried to Solve Everything at Once
+
+Our tool tried to be:
+- A prompt manager  
+- An analytics platform  
+- A workflow engine  
+- A version control system  
+- An organization tool  
+
+It could do a lot.
+
+But it didn’t do anything simply.
+
+Users often just wanted one thing:
+
+> “Save a prompt quickly and reuse it.”
+
+Instead, they got:
+- Filters  
+- Tags  
+- Categories  
+- Compatibility settings  
+- Multiple views  
+
+👉 **Lesson:**  
+Great products solve one problem extremely well — not ten problems poorly.
+
+---
+
+## 5. We Made UX More Complicated Than It Needed to Be
+
+One of the most painful mistakes was user experience.
+
+We introduced flows like:
+- Popup → Main page → Modal → Next step  
+- Multi-step forms with “Next” and “Advanced”  
+- Separate views for similar actions  
+
+The result?
+
+Too many clicks. Too much friction.
+
+Saving a simple prompt became a process.
+
+👉 **Lesson:**  
+Every extra click is a chance for users to leave.
+
+---
+
+## 6. We Scaled Too Early
+
+We tried to think globally — too soon.
+
+We added:
+- 15+ languages  
+- Theme systems (dark mode, light mode)  
+- Complex UI structures  
+
+But none of this mattered without real usage.
+
+👉 **Lesson:**  
+Scaling before product-market fit is wasted effort.
+
+---
+
+## 7. We Built Features That Weren’t Fully Functional
+
+Some features sounded good but lacked real depth:
+- Workflows with model selection (without real integration)  
+- New tab options without functionality  
+- Compatibility logic without technical foundation  
+
+This created a dangerous illusion:
+
+The product felt more powerful than it actually was.
+
+👉 **Lesson:**  
+Half-built features are worse than no features.
+
+---
+
+## 8. We Overcomplicated Styling
+
+Instead of using proven frameworks like Bootstrap, we:
+- Built custom CSS systems  
+- Styled layouts manually  
+- Created redundant code  
+
+The result:
+- Hard to maintain  
+- Inconsistent design  
+- Slower development  
+
+👉 **Lesson:**  
+Standard tools exist for a reason — use them.
+
+---
+
+## 9. We Ignored a Simple Truth: Speed Matters Most
+
+The biggest realization came late:
+
+Users don’t want complexity.  
+They want speed.
+
+In tools like ChatGPT, what matters is:
+- How fast can I insert something?  
+- How fast can I save something?  
+
+Not:
+- How detailed can I analyze it?  
+
+👉 **Lesson:**  
+Speed beats features. Every time.
+
+---
+
+## The Real Problem: Lack of Focus
+
+If we had to reduce everything to one core mistake, it’s this:
+
+**We didn’t have a clear focus on the problem we were solving.**
+
+We tried to build a perfect system —  
+instead of a simple, useful tool.
+
+---
+
+## The Restart: A Simpler, Better Direction
+
+Today, our direction is clear:
+
+- Focus on one platform: ChatGPT  
+- Focus on a few essential features  
+- Focus on speed  
+- Focus on real usage  
+
+No overengineering.  
+No unnecessary abstractions.  
+No feature overload.
+
+---
+
+## Final Thought
+
+Mistakes like these aren’t failures.
+
+They’re the turning point where better products begin.
+
+Because once you understand what doesn’t work —  
+you can finally start building what does.
+
+---
+
+## Try the Simpler Approach with PromptIn
+
+If you’re tired of overcomplicated tools and just want a fast, reliable way to manage your prompts, this is exactly what we’re building now.
+
+Give PromptIn a try and experience a cleaner, more focused workflow.
+
+[Install PromptIn for free](https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje) and see how simple prompt management can be.
+  `
+},
+  {
+      slug: "2026-04-26-why-we-rolled-back-and-what-we-learned",
+  title: "We Rolled It Back: A Hard Lesson in Product Design and User Experience",
+  description: "Not every update is a success. Here's why we reversed a major change in PromptIn — and what it taught us about user experience, communication, and product design.",
+  date: "2026-04-26",
+  readTime: "5 min read",
+  author: "PromptIn Team",
+  tags: ["Product Update", "UX", "Lessons Learned"],
+  content: `
+# We Rolled It Back: A Hard Lesson in Product Design and User Experience
+
+Not every product decision leads forward.
+
+Some take you sideways. Others take you backward — and that’s exactly what happened to us this week.
+
+After recently simplifying PromptIn and removing key features, we were confident we were moving in the right direction. Cleaner interface, fewer distractions, better performance.
+
+But reality hit quickly.
+
+## The Problem We Didn’t See Coming
+
+Shortly after the update, a new kind of feedback started appearing:
+
+> "Wait… how does this work now?"
+
+That question came up again. And again. And again.
+
+What we initially interpreted as a usability improvement turned into something else entirely:
+
+**confusion.**
+
+Users didn’t understand how to use the new version. Not because they weren’t capable — but because we failed to guide them.
+
+## The Real Issue: Lack of Clarity, Not Capability
+
+We discovered something critical:
+
+It wasn’t just about removing or simplifying features.  
+It was about **how users learn and understand the system**.
+
+We made two key mistakes:
+
+- **We didn’t clearly explain how the new workflow works**
+- **We designed interactions based on assumptions, not real user behavior**
+
+Even worse, the way we *expected* users to use the tool didn’t match how they *naturally wanted* to use it.
+
+That gap created friction — and friction leads to drop-off.
+
+## The Decision: Rolling Back
+
+So we made another difficult call:
+
+👉 We rolled back to a previous version.
+
+Yes — including parts we originally wanted to remove.
+
+Why?
+
+Because a broken but familiar system is often more usable than a better system no one understands.
+
+Trying to push forward without fixing the communication gap would have cost us even more users.
+
+## A Brutal but Valuable Lesson
+
+This experience reinforced something many teams underestimate:
+
+> **A great feature is useless if users don’t understand it.**
+
+Product design isn’t just about functionality. It’s about:
+- Guidance  
+- Onboarding  
+- Clear mental models  
+- Matching real user expectations  
+
+Without these, even the best ideas fail.
+
+## What We’re Changing Going Forward
+
+This wasn’t just a rollback. It was a reset in how we approach product development.
+
+From now on, we’re focusing on:
+
+### 1. Explaining Before Optimizing
+We won’t introduce major workflow changes without clearly showing users how and why they work.
+
+### 2. Designing With Users — Not For Them
+Assumptions are dangerous. Real usage patterns matter more than internal logic.
+
+### 3. Building With Clarity in Mind
+Every feature must answer one simple question:
+
+**"Will a new user understand this immediately?"**
+
+If not, it’s not ready.
+
+## The Bigger Picture
+
+Ironically, this setback gives us something more valuable than a smooth rollout ever could:
+
+**clarity.**
+
+We now understand that scaling PromptIn isn’t just about adding features or improving performance — it’s about making the experience *obvious*.
+
+Simple. Understandable. Natural.
+
+## Try PromptIn — Now With a Clearer Direction
+
+If you’ve tried PromptIn recently and felt confused, that’s on us — and we’re fixing it.
+
+We’re rebuilding not just the product, but also how we guide you through it.
+
+Now is a great time to give it another try and experience the improved stability — with clearer direction coming next.
+
+[Install PromptIn for free](https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje) and follow our journey as we turn lessons into a better product.
+  `
+},
+  {
+      slug: "2026-04-24-simplifying-our-extension-for-better-performance",
+  title: "Why We Removed a Core Feature to Make PromptIn Better",
+  description: "Sometimes improving a product means removing features. Here's why we eliminated the 'Save Prompt' button and how it leads to a faster, more reliable experience.",
+  date: "2026-04-24",
+  readTime: "4 min read",
+  author: "PromptIn Team",
+  tags: ["Product Update", "Performance", "UX"],
+  content: `
+# Why We Removed a Core Feature to Make PromptIn Better
+
+Building a great product isn’t just about adding features — it’s about knowing when to remove them.
+
+Last week marked an important shift in how we think about PromptIn. After closely analyzing how our extension performs in real-world usage, we made a bold decision: **simplify aggressively and remove what doesn’t work reliably**.
+
+## The Problem: When Complexity Gets in the Way
+
+Like many growing tools, PromptIn evolved quickly. We introduced features, refined workflows, and focused heavily on specific parameters we believed were important.
+
+But over time, a pattern became clear:
+
+**We were solving the right problems — but often at the wrong level of complexity.**
+
+Some features looked great in theory but introduced friction in practice. Others worked inconsistently across different environments. And a few simply didn’t meet the reliability standards we expect from a daily-use productivity tool.
+
+## The Big Decision: Removing the "Save Prompt" Button
+
+One of the most noticeable changes?
+
+👉 We completely removed the **"Save Prompt" button**.
+
+This wasn’t an easy call. It was a core part of how users interacted with PromptIn. But in reality, it created more issues than value:
+
+- Inconsistent behavior across different AI platforms  
+- UI clutter that disrupted the user experience  
+- Technical overhead that affected performance  
+
+Instead of trying to patch and maintain a flawed interaction, we chose a cleaner path: **remove it and rebuild the experience around simplicity and reliability**.
+
+## A Cleaner, More Reliable Interface
+
+With the removal of the feature, we took the opportunity to refine the entire interface.
+
+The result is a system that feels:
+
+- **More stable** – fewer edge cases and unexpected bugs  
+- **Faster** – reduced overhead and cleaner interactions  
+- **More intuitive** – less visual noise, clearer actions  
+
+This wasn’t just a UI tweak — it was a foundational improvement.
+
+## Why This Matters for You
+
+If you use AI tools daily, you know how important flow is. Even small interruptions can break your focus and slow you down.
+
+Our goal with PromptIn is simple:
+
+> **Your tools should stay out of your way and just work.**
+
+By removing unreliable features and focusing on what truly works, we’re building a system you can trust — every single time you use it.
+
+## The Bigger Lesson: Subtraction > Addition
+
+There’s a common misconception in product development that more features = more value.
+
+In reality, the opposite is often true.
+
+The best tools:
+- Do fewer things  
+- But do them exceptionally well  
+
+This update reflects a broader philosophy we’re embracing:  
+**clarity, performance, and reliability over feature overload.**
+
+## What’s Next?
+
+This change gives us a much stronger foundation to build on.
+
+Moving forward, you can expect:
+- More stable workflows  
+- Thoughtfully designed features  
+- Continuous improvements based on real usage  
+
+We’re not just building features — we’re refining an experience.
+
+## Try the New, Simpler PromptIn
+
+If you haven’t used PromptIn recently, now is the perfect time to take another look.
+
+You’ll immediately notice the difference:
+cleaner, faster, and far more reliable.
+
+Give it a try and see how much smoother your AI workflow can feel.
+
+[Install PromptIn for free](https://chromewebstore.google.com/detail/promptin-ai-prompt-manage/pbfmkjjnmjfjlebpfcndpdhofoccgkje) and experience the simplicity yourself.
+  `
+},
+  {
     slug: "2026-04-16-lessons-from-first-user-feedback-ui-ux-redesign",
     title: "Lessons from Our First User Complaint: Why We Completely Redesigned PromptIn",
     description: "Turning harsh feedback into a better product. How one honest review led to a lighter, faster, and more elegant AI prompt manager.",
