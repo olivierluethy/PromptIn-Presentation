@@ -1,4 +1,17 @@
-# PromptIn — Landing Page
+<div align="center">
+  <img src="public/icon.svg" alt="PromptIn logo" width="140" />
+  <h1>PromptIn — Landing Page</h1>
+  <p><b>The marketing site for PromptIn, an AI prompt manager browser extension.</b><br/>A Next.js landing page for the extension that organizes prompts across ChatGPT, Claude, Gemini and other AI tools.</p>
+  <p>
+    <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
+    <img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?logo=nextdotjs&logoColor=white">
+    <img alt="React" src="https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB">
+    <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white">
+    <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white">
+  </p>
+</div>
+
+---
 
 Marketing / presentation website for **PromptIn**, an AI prompt manager browser extension for ChatGPT, Claude, Gemini and other AI tools. Built with Next.js.
 
@@ -42,3 +55,12 @@ npm run start
 - `components/landing/` — landing-page sections (navbar, hero, features, CTA, footer, …)
 - `components/ui/` — reusable UI primitives
 - `hooks/`, `lib/`, `styles/`, `public/` — hooks, utilities, styles and static assets
+
+## License
+
+Released under the [MIT License](LICENSE) © 2026 Olivier Lüthy. You're free to use, modify and distribute this
+software, including commercially, as long as the copyright notice and license are included.
+
+## Author
+
+Built by **Olivier Lüthy** — [GitHub](https://github.com/olivierluethy).
